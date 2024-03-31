@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bài 3</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+        }
+
+        h2, h3 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            resize: vertical;
+        }
+
+        input[type="button"] {
+            margin-top: 10px;
+        }
+
+        #reviewList {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #reviewList li {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        function submitReview() {
+            var name = document.getElementById("name").value;
+            var review = document.getElementById("review").value;
+
+            var currentDate = new Date();
+            var timestamp = currentDate.toLocaleString();
+
+            var reviewList = document.getElementById("reviewList");
+            var newReview = document.createElement("li");
+            newReview.innerHTML = "<strong>" + name + " (" + timestamp + "):</strong> " + review;
+            reviewList.appendChild(newReview);
+
+            document.getElementById("name").value = "";
+            document.getElementById("review").value = "";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Đánh giá sản phẩm</h2>
+        <form>
+            <label for="name">Họ và tên:</label>
+            <input type="text" id="name" required><br><br>
+
+            <label for="review">Đánh giá:</label><br>
+            <textarea id="review" rows="5" required></textarea><br><br>
+
+            <input type="button" value="Gửi đánh giá" onclick="submitReview()">
+        </form>
+
+        <h3>Các đánh giá:</h3>
+        <ul id="reviewList"></ul>
+    </div>
+</body>
+</html>
